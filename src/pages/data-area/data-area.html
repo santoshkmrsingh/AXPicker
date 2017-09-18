@@ -8,12 +8,12 @@
   </ion-header>
   
   <ion-content padding>
-    <ion-list>      
-        <ion-item>
-          <ion-label>Username</ion-label>
-          <ion-input type="text" [(ngModel)]="userName"></ion-input>
-        </ion-item>            
-      </ion-list>  
-      <button ion-button full (click)="loginClick()">Login</button>
+    <ion-item>
+        <ion-label>Company</ion-label>
+        <ion-select [(ngModel)]="company" [compareWith]="compareFn">
+          <ion-option *ngFor="let company of companies" [value]="company"></ion-option>
+        </ion-select>
+      </ion-item> 
+      <button ion-button full (click)="selectClick()">Select</button>
   </ion-content>
   
