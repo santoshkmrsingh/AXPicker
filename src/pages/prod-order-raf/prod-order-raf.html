@@ -1,0 +1,31 @@
+<!--
+  Generated template for the ProdOrderRafPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Report as finished</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Prod order</ion-label>
+        <ion-label fixed>{{prodOrder}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Output qty</ion-label>    
+        <ion-input type="text" [(ngModel)]="quantity"></ion-input>
+      </ion-item>
+    </ion-list>  
+  <br>
+  <button ion-button block (click)="reportAsFinished()">Finish</button>  
+    
+</ion-content>
