@@ -6,53 +6,59 @@ import { Observable } from "rxjs";
 import { Storage } from '@ionic/storage';
 
 @Injectable()
-
 export class AxServiceProvider {
 
   public server: any;
   public port: any;
-  //public url = 'http://' + this.server +':' + this.port + '/MattexWebAPI/';
-  public url = 'http://192.168.0.182:9090/MattexWebAPI/';
-  
-  private loginURL = this.url + 'checkuser';  // URL to web api
-  private prodListURL = this.url + 'getProdOrders';  // URL to web api
-  private postProdURL = this.url + 'postProdOrder';;  // URL to web api
-  private saleListURL = this.url + 'getSalesOrders';;  // URL to web api
-  private soRegistrationURL = this.url + 'getSORegistration';;  // URL to web api
+  public url;
+  private loginURL;
+  private prodListURL;
+  private postProdURL;
+  private saleListURL;
+  private soRegistrationURL;
 
   public parmWorkerID:string;
   public parmServerAddress:string;
 
   constructor(public http: Http, public storage: Storage) {
-    console.log('Hello AxServiceProvider Provider');      
+    console.log('Hello AxServiceProvider Provider');  
+    this.setServerPort();    
   }
 
   setServerPort(){    
     this.storage.ready().then(() => {
       this.storage.get("whmsserver").then((data) => {
         this.server = data;
-        console.log(this.server);
+        this.setURL();   
+        console.log(data);     
       });
       this.storage.get("whmsport").then((data) => {
         this.port = data;
+        this.setURL();
+        console.log(data);  
       });
     });
   }
-
-    auth(user:string, password: string): Observable<any>{ 
-      this.setServerPort(); 
-      let body = {UserId: user, Password: password};
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
-      return this.http.post(this.loginURL,JSON.stringify(body), options)
-      .map(this.extractData)
-      .catch(this.handleError);
-    }
+  setURL(){
+    this.url = 'http://'+this.server+':'+this.port+'/MattexWebAPI/';
+    this.loginURL = this.url + 'checkuser';
+    this.prodListURL = this.url + 'getProdOrders';
+    this.postProdURL = this.url + 'postProdOrder';
+    this.saleListURL = this.url + 'getSalesOrders';
+    this.soRegistrationURL = this.url + 'getSORegistration';
+  }
+  auth(user:string, password: string): Observable<any>{
+    let body = {UserId: user, Password: password};
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.loginURL,JSON.stringify(body), options)
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
 
     getProdList(employeeID:string): Observable<any>{ 
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-
       return this.http.get(this.prodListURL + '/'+ employeeID, options)
       .map(this.extractData)
       .catch(this.handleError);

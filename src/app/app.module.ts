@@ -16,6 +16,7 @@ import { PickingPage } from '../pages/picking/picking';
 import { StartPage } from '../pages/start/start';
 import { SoRegistrationPage } from '../pages/so-registration/so-registration';
 import { IonicStorageModule } from '@ionic/storage';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule({
   declarations: [
@@ -53,8 +54,9 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AxServiceProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler},    
+    AxServiceProvider,
+    BarcodeScanner
   ]
   
 })
