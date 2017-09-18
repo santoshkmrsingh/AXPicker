@@ -10,8 +10,13 @@
   <ion-content padding>
     <ion-item>
         <ion-label>Company</ion-label>
+<<<<<<< Updated upstream
         <ion-select [(ngModel)]="company">
           <ion-option *ngFor="let company of companies" [value]="company.DataAreaId"></ion-option>
+=======
+        <ion-select [(ngModel)]="company" [compareWith]="compareFn">
+          <ion-option *ngFor="let company of companies" [value]="company"></ion-option>
+>>>>>>> Stashed changes
         </ion-select>
       </ion-item> 
       <button ion-button full (click)="selectClick()">Select</button>
