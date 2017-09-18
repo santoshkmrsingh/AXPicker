@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 
-/**
- * Generated class for the ProdOrderRafPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @Component({
   selector: 'page-prod-order-raf',
   templateUrl: 'prod-order-raf.html',
