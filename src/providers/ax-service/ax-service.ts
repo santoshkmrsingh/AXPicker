@@ -16,7 +16,7 @@ export class AxServiceProvider {
   private postProdURL;
   private saleListURL;
   private soRegistrationURL;
-
+  private soPickingDetailsURL;
   public parmWorkerID:string;
   public parmServerAddress:string;
 
@@ -39,6 +39,7 @@ export class AxServiceProvider {
       });
     });
   }
+
   setURL(){
     this.url = 'http://'+this.server+':'+this.port+'/MattexWebAPI/';
     this.loginURL = this.url + 'checkuser';
@@ -46,12 +47,23 @@ export class AxServiceProvider {
     this.postProdURL = this.url + 'postProdOrder';
     this.saleListURL = this.url + 'getSalesOrders';
     this.soRegistrationURL = this.url + 'getSORegistration';
+    this.soPickingDetailsURL = this.url + 'getPickingDetails'    
   }
+
   auth(user:string, password: string): Observable<any>{
     let body = {UserId: user, Password: password};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.loginURL,JSON.stringify(body), options)
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
+
+  getPickingDetails(saleId:string, lineNum:number): Observable<any>{
+    let body = {saleId: saleId, lineNum: lineNum};
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.soPickingDetailsURL,JSON.stringify(body), options)
     .map(this.extractData)
     .catch(this.handleError);
   }
