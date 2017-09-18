@@ -14,12 +14,28 @@
 
 
 <ion-content padding>
-  <ion-item> {{saleId}}  </ion-item>
-  <ion-item> {{lineNum}} </ion-item>
-  <ion-item>
-      <ion-input type="text" value=""></ion-input>
-  </ion-item>
-  
-  <button ion-button>Default</button>
+  <ion-grid>
+    <ion-row>
+        <ion-col>LineNo</ion-col>
+        <ion-col>Item</ion-col>        
+        <ion-col>Qty</ion-col> 
+        <ion-col>Batch</ion-col> 
+        <ion-col>Scan Qty</ion-col>  
+        <ion-col>Scan Batch</ion-col>  
+    </ion-row>
+
+    <button ion-item no-margin *ngFor="let row of batchList" ngDefaultControl no-border no-padding>          
+      <ion-row wrap>
+          <ion-col col-auto>{{row.lineNum}}</ion-col>
+          <ion-col col-auto>{{row.itemId}}</ion-col>
+          <ion-col>{{row.qty}}</ion-col>  
+          <ion-col>{{row.batchNumber}}</ion-col>  
+          <ion-col><ion-input type="text" value="{{row.qtyScanned}}"></ion-input></ion-col>  
+          <ion-col><ion-input type="text" value="{{row.batchScanned}}"></ion-input></ion-col>  
+      </ion-row>
+    </button>
+  </ion-grid>
+
+  <button ion-button>Confirm</button>
     
 </ion-content>

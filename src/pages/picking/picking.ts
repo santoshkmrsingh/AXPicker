@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 
 /**
  * Generated class for the PickingPage page.
@@ -18,13 +19,16 @@ export class PickingPage {
   public lineNum;
   public batchList;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner, public axService:AxServiceProvider ) {
     this.saleId = navParams.get('saleId');
     this.lineNum = navParams.get('lineNum');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PickingPage');
+    this.axService.getPickingDetails( this.saleId, this.lineNum).subscribe((response)=>{
+      this.batchList = response; 
+    });
   }
 
 }
