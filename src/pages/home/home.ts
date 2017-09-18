@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 import { ProdListPage } from '../prod-list/prod-list';
 import { DataAreaPage } from '../data-area/data-area';
@@ -13,8 +13,12 @@ export class HomePage {
   password : string;
 
   public loginClick(){
-    
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.axMethods.auth( this.userName, this.password).subscribe((response) => {
+      loading.dismiss();
       if ( response.Authenticated )   {
         this.axMethods.parmWorkerID = response.Worker.PersonnelNumber;
         this.navCtrl.push(DataAreaPage);        
@@ -26,7 +30,8 @@ export class HomePage {
     });
   }
 
-  constructor(public navCtrl: NavController, public axMethods: AxServiceProvider, public alert:AlertController) {
+  constructor(public navCtrl: NavController, public axMethods: AxServiceProvider, public alert:AlertController,
+    public loadingCtrl: LoadingController) {
 
   }
 
