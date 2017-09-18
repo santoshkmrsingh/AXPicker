@@ -17,6 +17,7 @@ import { StartPage } from '../pages/start/start';
 import { SoRegistrationPage } from '../pages/so-registration/so-registration';
 import { IonicStorageModule } from '@ionic/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { DataAreaPage } from '../pages/data-area/data-area';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     PickListPage,
     PickingPage,
     StartPage,
-    SoRegistrationPage
+    SoRegistrationPage,
+    DataAreaPage
   ],
 
   imports: [
@@ -48,7 +50,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     PickListPage,
     PickingPage,
     StartPage,
-    SoRegistrationPage
+    SoRegistrationPage,
+    DataAreaPage
   ],
 
   providers: [
