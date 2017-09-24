@@ -21,6 +21,7 @@ export class HomePage {
       loading.dismiss();
       if ( response.Authenticated )   {
         this.axMethods.parmWorkerID = response.Worker.PersonnelNumber;
+        this.axMethods.userImage = response.Worker.ImageStr;         
         this.navCtrl.push(DataAreaPage);        
       }
       else {

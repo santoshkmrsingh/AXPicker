@@ -13,6 +13,7 @@ export class AxServiceProvider {
   public url;
   public user;
   public company: any;
+  public userImage;
   private loginURL;
   private companyURL;
   private prodListURL;

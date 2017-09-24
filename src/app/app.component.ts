@@ -5,6 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { SettingsPage } from '../pages/settings/settings';
+import { WelcomePage } from '../pages/welcome/welcome';
+import { AxServiceProvider } from '../providers/ax-service/ax-service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -15,11 +18,13 @@ import { SettingsPage } from '../pages/settings/settings';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = WelcomePage;
 
   public pages: Array<{title: string, component: any}>;
+  public imagestr: string;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
+      public axServiceProvider: AxServiceProvider, private sanitizer: DomSanitizer) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -42,5 +47,18 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  public getImageStr()
+  { 
+    //console.log(this.axServiceProvider.userImage);
+    
+    if(this.axServiceProvider.userImage == "" || this.axServiceProvider.userImage == null){
+      return "assets/icon/user.png";
+    } else {
+      var img = "data:image/jpeg;base64," + this.axServiceProvider.userImage;
+      console.log(img);
+      return this.sanitizer.bypassSecurityTrustUrl(img);
+    }
   }
 }

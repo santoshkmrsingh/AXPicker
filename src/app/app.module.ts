@@ -18,7 +18,9 @@ import { SoRegistrationPage } from '../pages/so-registration/so-registration';
 import { IonicStorageModule } from '@ionic/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { DataAreaPage } from '../pages/data-area/data-area';
-import { AutoTabDirective } from '../directives/auto-tab/auto-tab';
+import { WelcomePage } from '../pages/welcome/welcome';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,14 +34,15 @@ import { AutoTabDirective } from '../directives/auto-tab/auto-tab';
     StartPage,
     SoRegistrationPage,
     DataAreaPage,
-    AutoTabDirective
+    WelcomePage
   ],
 
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    BrowserAnimationsModule
   ],
 
   bootstrap: [IonicApp],
@@ -53,7 +56,8 @@ import { AutoTabDirective } from '../directives/auto-tab/auto-tab';
     PickingPage,
     StartPage,
     SoRegistrationPage,
-    DataAreaPage
+    DataAreaPage,
+    WelcomePage
   ],
 
   providers: [
