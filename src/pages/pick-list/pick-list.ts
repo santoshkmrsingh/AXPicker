@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 import { SoRegistrationPage } from '../so-registration/so-registration';
 
@@ -19,15 +19,27 @@ export class PickListPage {
   public salesOrderList;
   public filterList;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public axService:AxServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public axService:AxServiceProvider
+    ,public loadingCtrl: LoadingController, public alert:AlertController) {
     this.filterList=[]; //required when workig with virtual scroll
   }
 
   ionViewDidLoad() {
       console.log('ionViewDidLoad PickListPage');
+
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+      loading.present();
+
       this.axService.getSalesOrderList( this.axService.parmWorkerID ).subscribe((response)=>{
+      loading.dismiss();
       this.salesOrderList = response; 
       this.filterList = response;    
+    }, (error) => {
+      console.log('ERROR'+error);
+      loading.dismiss();
+      this.alert.create( {title : 'Error', subTitle : 'Please check network connection.', buttons : ['Dismiss']}).present();
     })
   }
 
