@@ -25,9 +25,12 @@ export class HomePage {
         this.navCtrl.push(DataAreaPage);        
       }
       else {
-        this.alert.create( {title : 'Login', subTitle : 'Invalid username or password', buttons : ['Dismiss']}).present();
-      }
-      
+        this.alert.create( {title : 'Login', subTitle : 'Invalid username or password.', buttons : ['Dismiss']}).present();
+      }      
+    }, (error) => {
+      console.log('ERROR'+error);
+      loading.dismiss();
+      this.alert.create( {title : 'Error', subTitle : 'Please check network connection.', buttons : ['Dismiss']}).present();
     });
   }
 
