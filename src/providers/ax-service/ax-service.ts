@@ -129,7 +129,7 @@ export class AxServiceProvider {
   }
 
   confirmDelivery(soLineList:object): Observable<any>{ 
-    let body = {salesId : soLineList[0].salesId};
+    let body = {SORegContract : soLineList, DataAreaId: this.company};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
