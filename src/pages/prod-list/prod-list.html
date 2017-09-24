@@ -22,9 +22,12 @@
 
 <ion-content padding>
   <ion-list [virtualScroll]="filterList" approxItemHeight="40px">
-      <ion-item *virtualItem="let item" (click)="itemSelected(item)">
+      <button ion-item *virtualItem="let item" (click)="itemSelected(item)">
           <h2>{{item.ProdId}}</h2>
           <h3>{{item.Name}}</h3>
-      </ion-item> 
+          <h3>{{item.DeliveryDate | date}}</h3>
+          <h3>{{item.StartedQty}}</h3>
+          <h3>{{item.Status}}</h3>
+      </button> 
     </ion-list>  
 </ion-content>

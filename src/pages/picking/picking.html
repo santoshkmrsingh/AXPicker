@@ -1,41 +1,26 @@
-<!--
-  Generated template for the PickingPage page.
+<script src="cordova.js"></script>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Picking</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-  <ion-grid>
-    <ion-row>
-        <ion-col>LineNo</ion-col>
-        <ion-col>Item</ion-col>        
-        <ion-col>Qty</ion-col> 
-        <ion-col>Batch</ion-col> 
-        <ion-col>Scan Qty</ion-col>  
-        <ion-col>Scan Batch</ion-col>  
-    </ion-row>
-
-    <button ion-item no-margin *ngFor="let row of batchList" ngDefaultControl no-border no-padding>          
-      <ion-row wrap>
-          <ion-col col-auto>{{row.lineNum}}</ion-col>
-          <ion-col col-auto>{{row.itemId}}</ion-col>
-          <ion-col>{{row.qty}}</ion-col>  
-          <ion-col>{{row.batchNumber}}</ion-col>  
-          <ion-col><ion-input type="text" value="{{row.qtyScanned}}"></ion-input></ion-col>  
-          <ion-col><ion-input type="text" value="{{row.batchScanned}}"></ion-input></ion-col>  
-      </ion-row>
-    </button>
-  </ion-grid>
-
-  <button ion-button>Confirm</button>
-    
+<ion-content>
+  <ion-list no-margin no-padding> 
+    <ion-item>
+      <ion-label style="width:20%;">Qty</ion-label>
+      <ion-label style="width:40%;">Batch</ion-label>
+      <ion-label style="width:40%">Scanned Batch</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let row of batchList" >
+      <ion-label style="width:20%;">{{row.qty}}</ion-label>
+      <ion-label style="width:40%;">{{row.batchNumber}}</ion-label>
+      <div item-content style="width:40%;">
+        <ion-input auto-tab #listElement [ngClass]="dataColor(row)" type="text" (ionFocus)="scanBarcode(row)" value="{{row.batchScanned}}"></ion-input>
+      </div>
+    </ion-item>          
+  </ion-list>
+  <br>
+  <button ion-button (click)="confirmPicking()">Confirm</button>    
 </ion-content>

@@ -1,9 +1,6 @@
-<!--
-  Generated template for the SoRegistrationPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
+<script src="cordova.js"></script>
+
 <ion-header>
 
   <ion-navbar>
@@ -14,13 +11,15 @@
 
 
 <ion-content padding>
-        <ion-list [virtualScroll]="soLineList" approxItemHeight="100px">
-            <button class="leftAlign" ion-item *virtualItem="let item" (click)="itemSelected(item)">             
+        <ion-list [virtualScroll]="soLineList" approxItemHeight="80px">
+            <button ion-item *virtualItem="let item" (click)="itemSelected(item)" [style.color]="item.picked ? '#00CC00' : '000000'">
                 <h3>Line No : {{item.lineNum}}</h3>
                 <h3>Item : {{item.itemId}}</h3>
                 <h3>Name : {{item.itemName}}</h3>
                 <h3>Unit : {{item.uom}}</h3>
-                <h3>Qty : {{item.qty}}</h3>                
+                <h3>Qty : {{item.qty}}</h3>    
+                <h3>Warehouse:{{item.warehouse}}</h3>
+                <h3>Location:{{item.location}}</h3>                 
             </button>            
           </ion-list>  
 
@@ -54,4 +53,8 @@
       </button>
     </ion-grid>
      -->
+  
+  <br>
+  
+  <button ion-button (click)="printDeliveryNote()">Confirm</button>     
 </ion-content>

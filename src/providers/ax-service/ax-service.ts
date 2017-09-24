@@ -11,6 +11,7 @@ export class AxServiceProvider {
   public server: any;
   public port: any;
   public url;
+  public user;
   public company: any;
   private loginURL;
   private companyURL;
@@ -19,14 +20,18 @@ export class AxServiceProvider {
   private saleListURL;
   private soRegistrationURL;
   private soPickingDetailsURL;
-  public parmWorkerID:string;
+  private soDeliveryNoteURL;
 
+  public parmWorkerID:string;
+  public pickingDone:boolean;
+  
   constructor(public http: Http, public storage: Storage) {
     console.log('Hello AxServiceProvider Provider');  
     this.setServerPort();    
   }
 
-  setServerPort(){    
+  setServerPort(){ 
+    /*   
     this.storage.ready().then(() => {
       this.storage.get("whmsserver").then((data) => {
         this.server = data;
@@ -38,7 +43,10 @@ export class AxServiceProvider {
         this.setURL();
         console.log(data);  
       });
-    });
+    });*/
+    this.server = "192.168.0.182";
+    this.port = "9090";
+    this.setURL();
   }
 
   setURL(){
@@ -50,6 +58,7 @@ export class AxServiceProvider {
     this.soRegistrationURL = this.url + 'getSORegistration';
     this.soPickingDetailsURL = this.url + 'getPickingDetails';
     this.companyURL = this.url + 'getCompanyList';    
+    this.soDeliveryNoteURL = this.url + 'postDeliveryNoteNew';
   }
 
   auth(user:string, password: string): Observable<any>{
@@ -69,8 +78,10 @@ export class AxServiceProvider {
     .catch(this.handleError);
   }
 
-  getPickingDetails(saleId:string, lineNum:number): Observable<any>{
-    let body = {saleId: saleId, lineNum: lineNum};
+  getPickingDetails(saleId:string, lineNum:number): Observable<any>{   
+    let body = {salesId: saleId, lineNum: lineNum, DataArea: {DataAreaId: this.company}};
+    console.log('calling getPickingDetails')
+    console.log(body);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.soPickingDetailsURL,JSON.stringify(body), options)
@@ -79,33 +90,35 @@ export class AxServiceProvider {
   }
 
   getProdList(employeeID:string): Observable<any>{ 
+    let body = {UserId: this.user,DataArea: {DataAreaId: this.company}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.get(this.prodListURL + '/'+ employeeID, options)
+    return this.http.post(this.prodListURL,JSON.stringify(body), options)
     .map(this.extractData)
     .catch(this.handleError);
   }
 
   getSalesOrderList(employeeID:string) {
+    let body = {UserId: this.user,DataArea: {DataAreaId: this.company}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    
-    return this.http.get(this.saleListURL + '/'+ employeeID, options)
+    let options = new RequestOptions({ headers: headers });    
+    return this.http.post(this.saleListURL,JSON.stringify(body), options)
     .map(this.extractData)
     .catch(this.handleError);
   }
 
   getSORegistration(salesId:string) {
+    let body = {salesId: salesId,DataArea: {DataAreaId: this.company}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     
-    return this.http.get(this.soRegistrationURL + '/'+ salesId, options)
+    return this.http.post(this.soRegistrationURL,JSON.stringify(body), options)
     .map(this.extractData)
     .catch(this.handleError);
   }
 
   postProdOrder(prodOrder:string, quantity:number): Observable<any>{ 
-    let body = {prodId: prodOrder, quantity: quantity};
+    let body = {prodId: prodOrder, quantity: quantity,DataArea: {DataAreaId: this.company}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -114,8 +127,18 @@ export class AxServiceProvider {
     .catch(this.handleError);
   }
 
+  confirmDelivery(soLineList:object): Observable<any>{ 
+    let body = {salesId : soLineList[0].salesId};
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.soDeliveryNoteURL, JSON.stringify(body), options)
+    .map(this.extractData)
+    .catch(this.handleError);
+  }
+
   private extractData(res: Response) { 
-    console.log( res.json() );
+    //console.log( res.json() );
     return res.json() || { };
   }
     

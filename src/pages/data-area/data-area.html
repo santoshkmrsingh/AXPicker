@@ -11,7 +11,7 @@
     <ion-item>
         <ion-label>Company</ion-label>
         <ion-select [(ngModel)]="company">
-          <ion-option *ngFor="let company of companies" [value]="company.DataAreaId"></ion-option>
+          <ion-option *ngFor="let company of companies" [value]="company.DataAreaId">{{company.DataAreaId}}</ion-option>
         </ion-select>
       </ion-item> 
       <button ion-button full (click)="selectClick()">Select</button>

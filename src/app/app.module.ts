@@ -18,6 +18,7 @@ import { SoRegistrationPage } from '../pages/so-registration/so-registration';
 import { IonicStorageModule } from '@ionic/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { DataAreaPage } from '../pages/data-area/data-area';
+import { AutoTabDirective } from '../directives/auto-tab/auto-tab';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DataAreaPage } from '../pages/data-area/data-area';
     PickingPage,
     StartPage,
     SoRegistrationPage,
-    DataAreaPage
+    DataAreaPage,
+    AutoTabDirective
   ],
 
   imports: [

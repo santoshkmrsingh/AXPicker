@@ -5,6 +5,15 @@ page-so-registration {
 
     .leftAlign{
         text-align : left;
+    }    
+
+    .confirmed {
+        text-align : left;
+        background-color: #33FF00;
     }
-    
+
+    .not-confirmed {
+        text-align : left;
+        background-color: #000000;
+    }    
 }
