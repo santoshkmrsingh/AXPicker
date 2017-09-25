@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef, Directive } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ElementRef, Directive } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 

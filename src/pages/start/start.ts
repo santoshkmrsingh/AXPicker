@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MyApp } from '../../app/app.component';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { SettingsPage } from '../settings/settings';
 import { PickListPage } from '../pick-list/pick-list';

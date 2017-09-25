@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
-import { ProdListPage } from '../prod-list/prod-list';
 import { DataAreaPage } from '../data-area/data-area';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 
@@ -11,6 +11,7 @@ export class SettingsPage {
 
   public server: any;
   public port: any;
+  public camBarCode:boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, 
       public axService: AxServiceProvider) {
@@ -19,6 +20,9 @@ export class SettingsPage {
         this.server = val;
       });
       this.storage.get('whmsport').then((val) => {
+        this.port = val;
+      })
+      this.storage.get('camBarCode').then((val) => {
         this.port = val;
       })
     })
@@ -42,4 +46,11 @@ export class SettingsPage {
     });    
   }
 
+  camBarCodeChange(){
+    this.storage.ready().then(()=>{
+      this.storage.set("camBarCode", this.camBarCode);
+      this.axService.camBarCode = this.camBarCode;
+    });
+  }
+    
 }

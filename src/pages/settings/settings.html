@@ -17,5 +17,9 @@
       <ion-label color="primary">Port</ion-label>
       <ion-input placeholder="Port number" [(ngModel)]="port" (ionChange)="portChange()"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label color="primary">Use camera for barcodes</ion-label>
+      <ion-checkbox [(ngModel)]="camBarCode" (ionchange)="camBarCodeChange"></ion-checkbox>
+    </ion-item>
   </ion-list>
 </ion-content>

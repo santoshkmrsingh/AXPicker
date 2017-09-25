@@ -10,6 +10,7 @@ export class AxServiceProvider {
 
   public server: any;
   public port: any;
+  public camBarCode : Boolean;
   public url;
   public user;
   public company: any;
