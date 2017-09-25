@@ -30,7 +30,7 @@ export class DataAreaPage {
 
   selectClick(){
     this.axServiceProvider.company = this.company;
-    this.navCtrl.push(StartPage);
+    this.navCtrl.setRoot(StartPage);
   }
 
 }
