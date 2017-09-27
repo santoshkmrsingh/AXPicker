@@ -79,7 +79,7 @@ export class ProdListPage {
           loading.present();  
           this.axService.startProdOrder( item.ProdId ).subscribe((response)=>{
             loading.dismiss();
-            let alert = this.alert.create({title : 'Start',  buttons : ['Dismiss']});
+            alert = this.alert.create({title : 'Start',  buttons : ['Dismiss']});
             alert.setSubTitle( response.description );
             alert.present();            
           }, (error) => {
@@ -95,7 +95,7 @@ export class ProdListPage {
           loading.present();  
           this.axService.completeProdOrder( item.ProdId ).subscribe((response)=>{
             loading.dismiss();
-            let alert = this.alert.create({title : 'Complete',  buttons : ['Dismiss']});
+            alert = this.alert.create({title : 'Complete',  buttons : ['Dismiss']});
             alert.setSubTitle( response.description );
             alert.present();                  
           }, (error) => {
