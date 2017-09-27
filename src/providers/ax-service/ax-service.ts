@@ -16,6 +16,7 @@ export class AxServiceProvider {
   public axUser;
   public company: any;
   public userImage;
+  public axWorkerId;
   private loginURL;
   private companyURL;
   private prodListURL;
@@ -122,7 +123,7 @@ export class AxServiceProvider {
   }
 
   postProdOrder(prodOrder:string, quantity:number): Observable<any>{ 
-    let body = {prodId: prodOrder, quantity: quantity,DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser}};
+    let body = {prodId: prodOrder, quantity: quantity,DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser, PersonnelNumber: this.axWorkerId}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -132,7 +133,7 @@ export class AxServiceProvider {
   }
 
   confirmDelivery(soLineList:object): Observable<any>{ 
-    let body = {SORegContract : soLineList, DataAreaId: this.company, Worker: {AxUser: this.axUser}};
+    let body = {SORegContract : soLineList, DataAreaId: this.company, Worker: {AxUser: this.axUser, PersonnelNumber: this.axWorkerId}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
