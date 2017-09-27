@@ -132,6 +132,26 @@ export class AxServiceProvider {
     .catch(this.handleError);
   }
 
+  startProdOrder(prodOrder:string){
+    let body = {prodId: prodOrder, DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser, PersonnelNumber: this.axWorkerId}};
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.url + 'startProdOrder', JSON.stringify(body), options)
+    .map(this.extractData)
+    .catch(this.handleError);  
+  }
+
+  completeProdOrder(prodOrder:string){
+    let body = {prodId: prodOrder, DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser, PersonnelNumber: this.axWorkerId}};
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.url + 'completeProdOrder', JSON.stringify(body), options)
+    .map(this.extractData)
+    .catch(this.handleError);  
+  }
+
   confirmDelivery(soLineList:object): Observable<any>{ 
     let body = {SORegContract : soLineList, DataAreaId: this.company, Worker: {AxUser: this.axUser, PersonnelNumber: this.axWorkerId}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
