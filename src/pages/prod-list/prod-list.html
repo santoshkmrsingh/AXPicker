@@ -29,13 +29,22 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
+  
   <ion-list [virtualScroll]="filterList" approxItemHeight="40px">
-      <button ion-item *virtualItem="let item" (click)="itemSelected(item)">
+    <ion-item-sliding *virtualItem="let item">
+      <button ion-item (click)="itemSelected(item)">
           <h2>{{item.ProdId}}</h2>
           <h3>{{item.Name}}</h3>
           <h3>{{item.DeliveryDate | date}}</h3>
           <h3>{{item.StartedQty}}</h3>
           <h3>{{item.Status}}</h3>
       </button> 
-    </ion-list>  
+
+      <ion-item-options side="right">
+          <button ion-button (click)="changeStatus(item, 'start')">Start</button>
+          <button ion-button color="danger" (click)="changeStatus(item, 'complete')">Complete</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>  
+
 </ion-content>

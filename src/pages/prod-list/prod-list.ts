@@ -64,4 +64,16 @@ export class ProdListPage {
       refresher.complete();
     });
   }
+
+  //function to change the production order status
+  changeStatus( item, status){
+    switch (status){
+      case 'start':
+        window.alert('Status changes to started ' + item.ProdId);
+        break;
+      case 'complete':
+        window.alert( 'Status changed to completed');
+        break;
+    }
+  }  
 }
