@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef, Directive } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { Component, ElementRef, Directive } from '@angular/core';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 
@@ -60,18 +60,21 @@ export class PickingPage {
     this.navCtrl.pop();
   }
 
-  scanBarcode(rowObject){/*
-    this.options = {
-      prompt : "Scan your barcode "
-    }
+  scanBarcode(rowObject){
+    //camera only to be activated if configured for it
+    if ( this.axService.camBarCode )
+    {
+      this.options = {
+        prompt : "Scan your barcode "
+      }
 
-    this.barcodeScanner.scan(this.options).then((barcodeData) => {      
-      this.scanData = barcodeData;
-      rowObject.batchScanned = barcodeData.text;
-    }, (err) => {
-        console.log("Error occured : " + err);
-    });
-*/
+      this.barcodeScanner.scan(this.options).then((barcodeData) => {      
+        this.scanData = barcodeData;
+        rowObject.batchScanned = barcodeData.text;
+      }, (err) => {
+          console.log("Error occured : " + err);
+      });
+    }
     //this.elem.nativeElement.next().focus();
   }
 
