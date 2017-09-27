@@ -21,6 +21,7 @@ import { DataAreaPage } from '../pages/data-area/data-area';
 import { WelcomePage } from '../pages/welcome/welcome';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OneSignal } from '@ionic-native/onesignal';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},    
     AxServiceProvider,
-    BarcodeScanner
+    BarcodeScanner,
+    OneSignal 
   ]
   
 })

@@ -1,6 +1,7 @@
 import { Component, ViewChild, trigger, transition, style, state, animate, keyframes } from '@angular/core';
 import { NavController, Slides } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { OneSignal } from '@ionic-native/onesignal';
 
 @Component({
   selector: 'page-welcome',
@@ -28,7 +29,20 @@ export class WelcomePage {
   skipMsg: string = "Skip";
   state: string = 'x';
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private oneSignal: OneSignal) {
+    this.oneSignal.startInit('2a111811-21d2-4b12-bf57-7b970a5c19b1', '867971927416');
+    
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+    
+    this.oneSignal.handleNotificationReceived().subscribe(() => {
+     // do something when notification is received
+    });
+    
+    this.oneSignal.handleNotificationOpened().subscribe(() => {
+      // do something when a notification is opened
+    });
+    
+    this.oneSignal.endInit();
 
   }
 
@@ -56,4 +70,5 @@ export class WelcomePage {
   animationDone() {
     //this.state = 'x';
   }
+  
 }
