@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 import { ProdOrderRafPage } from '../prod-order-raf/prod-order-raf';
-
-/**
- * Generated class for the ProdListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-prod-list',
@@ -21,15 +14,24 @@ export class ProdListPage {
   public filterList;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public axService:AxServiceProvider,
-  public alert:AlertController) {
+  public alert:AlertController, public loadingCtrl: LoadingController) {
     this.filterList = []; //required for virtual scrolling
   }
 
   ionViewDidLoad() {
-      console.log('ionViewDidLoad ProdListPage');    
+      console.log('ionViewDidLoad ProdListPage');  
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+      loading.present();  
       this.axService.getProdList( this.axService.parmWorkerID ).subscribe((response)=>{
-      this.prodOrderList = response; 
-      this.filterList = response;
+        loading.dismiss();
+        this.prodOrderList = response; 
+        this.filterList = response;
+    }, (error) => {
+      console.log('ERROR'+error);
+      loading.dismiss();
+      this.alert.create( {title : 'Error', subTitle : 'Please check network connection.', buttons : ['Dismiss']}).present();
     });
   }
 
@@ -47,12 +49,19 @@ export class ProdListPage {
         prodOrder.Name.toLowerCase().indexOf( val.toLowerCase() ) > -1 );   
       } );
     }
-  }
-    
+  }    
 
   onSearchCancel(event:any){
     console.log('Cancel called');
     //event.target.value = '';
     this.filterList = this.prodOrderList;
+  }
+
+  doRefresh(refresher){
+    this.axService.getProdList( this.axService.parmWorkerID ).subscribe((response)=>{
+      this.prodOrderList = response; 
+      this.filterList = response;
+      refresher.complete();
+    });
   }
 }

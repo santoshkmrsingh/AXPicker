@@ -17,7 +17,7 @@
       <ion-label style="width:20%; text-align: center;">{{row.qty}}</ion-label>
       <ion-label style="width:40%; text-align: center;">{{row.batchNumber}}</ion-label>
       <div item-content style="width:40%; text-align: center;">
-        <ion-input auto-tab #listElement [ngClass]="dataColor(row)" type="text" (ionFocus)="scanBarcode(row)" value="{{row.batchScanned}}"></ion-input>
+        <ion-input auto-tab #listElement [ngClass]="dataColor(row)" type="text" (ionFocus)="scanBarcode(row)" [(ngModel)]="row.batchScanned"></ion-input>
       </div>
     </ion-item>          
   </ion-list>

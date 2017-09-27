@@ -21,6 +21,14 @@
 
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="bubbles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list [virtualScroll]="filterList" approxItemHeight="40px">
       <button ion-item *virtualItem="let item" (click)="itemSelected(item)">
           <h2>{{item.ProdId}}</h2>

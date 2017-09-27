@@ -1,5 +1,5 @@
-import { Component, ElementRef, Directive } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild, ElementRef, Directive } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 
@@ -26,15 +26,25 @@ export class PickingPage {
   options :BarcodeScannerOptions;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner
-    , public axService:AxServiceProvider, public elem: ElementRef ) {
+    , public axService:AxServiceProvider, public elem: ElementRef, public alert: AlertController
+    , public loadingCtrl: LoadingController) {
     this.saleId = navParams.get('saleId');
     this.lineNum = navParams.get('lineNum');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PickingPage');
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present(); 
     this.axService.getPickingDetails( this.saleId, this.lineNum).subscribe((response)=>{
+      loading.dismiss();
       this.batchList = response; 
+    }, (error) => {
+      console.log('ERROR'+error);
+      loading.dismiss();
+      this.alert.create( {title : 'Error', subTitle : 'Please check network connection.', buttons : ['Dismiss']}).present();
     });
   }
 
@@ -50,7 +60,7 @@ export class PickingPage {
     this.navCtrl.pop();
   }
 
-  scanBarcode(rowObject){
+  scanBarcode(rowObject){/*
     this.options = {
       prompt : "Scan your barcode "
     }
@@ -61,7 +71,7 @@ export class PickingPage {
     }, (err) => {
         console.log("Error occured : " + err);
     });
-
+*/
     //this.elem.nativeElement.next().focus();
   }
 
