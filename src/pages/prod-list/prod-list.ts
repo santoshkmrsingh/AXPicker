@@ -67,12 +67,42 @@ export class ProdListPage {
 
   //function to change the production order status
   changeStatus( item, status){
+  
+    var loading;
+    var alert;
+
     switch (status){
       case 'start':
-        window.alert('Status changes to started ' + item.ProdId);
+          loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+          });
+          loading.present();  
+          this.axService.startProdOrder( item.ProdId ).subscribe((response)=>{
+            loading.dismiss();
+            let alert = this.alert.create({title : 'Start',  buttons : ['Dismiss']});
+            alert.setSubTitle( response.description );
+            alert.present();            
+          }, (error) => {
+            console.log('ERROR'+error);
+            loading.dismiss();
+            this.alert.create( {title : 'Error', subTitle : 'Please check network connection.', buttons : ['Dismiss']}).present();
+          });
         break;
       case 'complete':
-        window.alert( 'Status changed to completed');
+          loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+          });
+          loading.present();  
+          this.axService.completeProdOrder( item.ProdId ).subscribe((response)=>{
+            loading.dismiss();
+            let alert = this.alert.create({title : 'Complete',  buttons : ['Dismiss']});
+            alert.setSubTitle( response.description );
+            alert.present();                  
+          }, (error) => {
+            console.log('ERROR'+error);
+            loading.dismiss();
+            this.alert.create( {title : 'Error', subTitle : 'Please check network connection.', buttons : ['Dismiss']}).present();
+          });        
         break;
     }
   }  
