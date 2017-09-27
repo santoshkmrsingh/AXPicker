@@ -1,16 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 import { PickingPage } from '../picking/picking';
 
-/**
- * Generated class for the SoRegistrationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-so-registration',
   templateUrl: 'so-registration.html'
@@ -29,9 +21,18 @@ export class SoRegistrationPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SoRegistrationPage');
-      this.axService.getSORegistration( this.saleId ).subscribe((response)=>{
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();  
+    this.axService.getSORegistration( this.saleId ).subscribe((response)=>{
+      loading.dismiss();
       this.soLineList = response;   
-      })
+    }, (error) => {
+      console.log('ERROR'+error);
+      loading.dismiss();
+      this.alert.create( {title : 'Error', subTitle : 'Please check network connection.', buttons : ['Dismiss']}).present();
+    })
   }
 
   ionViewDidEnter(){

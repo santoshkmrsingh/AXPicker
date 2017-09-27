@@ -13,6 +13,7 @@ export class AxServiceProvider {
   public camBarCode : Boolean;
   public url;
   public user;
+  public axUser;
   public company: any;
   public userImage;
   private loginURL;
@@ -73,15 +74,16 @@ export class AxServiceProvider {
   }
 
   getCompanyList(): Observable<any>{ 
+    let body = {AxUser: this.axUser};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.get(this.companyURL, options)
+    return this.http.post(this.companyURL, JSON.stringify(body), options)
     .map(this.extractData)
     .catch(this.handleError);
   }
 
   getPickingDetails(saleId:string, lineNum:number): Observable<any>{   
-    let body = {salesId: saleId, lineNum: lineNum, DataArea: {DataAreaId: this.company}};
+    let body = {salesId: saleId, lineNum: lineNum, DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser}};
     console.log('calling getPickingDetails')
     console.log(body);
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -92,7 +94,7 @@ export class AxServiceProvider {
   }
 
   getProdList(employeeID:string): Observable<any>{ 
-    let body = {UserId: this.user,DataArea: {DataAreaId: this.company}};
+    let body = {UserId: this.user,DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.prodListURL,JSON.stringify(body), options)
@@ -101,7 +103,7 @@ export class AxServiceProvider {
   }
 
   getSalesOrderList(employeeID:string) {
-    let body = {UserId: this.user,DataArea: {DataAreaId: this.company}};
+    let body = {UserId: this.user,DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });    
     return this.http.post(this.saleListURL,JSON.stringify(body), options)
@@ -110,7 +112,7 @@ export class AxServiceProvider {
   }
 
   getSORegistration(salesId:string) {
-    let body = {salesId: salesId,DataArea: {DataAreaId: this.company}};
+    let body = {salesId: salesId,DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     
@@ -120,7 +122,7 @@ export class AxServiceProvider {
   }
 
   postProdOrder(prodOrder:string, quantity:number): Observable<any>{ 
-    let body = {prodId: prodOrder, quantity: quantity,DataArea: {DataAreaId: this.company}};
+    let body = {prodId: prodOrder, quantity: quantity,DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -130,7 +132,7 @@ export class AxServiceProvider {
   }
 
   confirmDelivery(soLineList:object): Observable<any>{ 
-    let body = {SORegContract : soLineList, DataAreaId: this.company};
+    let body = {SORegContract : soLineList, DataAreaId: this.company, Worker: {AxUser: this.axUser}};
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
