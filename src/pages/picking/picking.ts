@@ -79,7 +79,12 @@ export class PickingPage {
   }
 
   dataColor(rowObject){
-      if(rowObject.batchNumber == rowObject.batchScanned) {
+    var matched;
+    matched = true;
+    matched = matched && (rowObject.batchScanned == rowObject.batchNumber);    
+    matched = matched && (rowObject.qtyScanned == rowObject.qty); 
+
+      if(matched) {
       return 'matched';
       } else {
       return 'not-matched';
