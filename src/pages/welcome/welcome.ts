@@ -24,6 +24,8 @@ import { OneSignal } from '@ionic-native/onesignal';
         ])
       ]
 })
+
+
 export class WelcomePage {
   @ViewChild(Slides) slides: Slides;
   skipMsg: string = "Skip";

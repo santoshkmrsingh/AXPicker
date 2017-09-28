@@ -31,12 +31,14 @@ export class AxServiceProvider {
   
   constructor(public http: Http, public storage: Storage) {
     console.log('Hello AxServiceProvider Provider');  
+    /*
     this.server = "192.168.0.182";
     this.port = "9090";
     this.setURL();    
     console.log('Urls initialized')
     console.log( 'LoginUrl  ' + this.loginURL);
-    //this.setServerPort(); //required for production build     
+    */
+    this.setServerPort(); //required for production build     
   }
 
   setServerPort(){ 
