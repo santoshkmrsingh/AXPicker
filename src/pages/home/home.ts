@@ -38,9 +38,6 @@ export class HomePage {
       console.log('ERROR'+error);
       loading.dismiss();
       this.alert.create( {title : 'Error', subTitle : 'Please check network connection.', buttons : ['Dismiss']}).present();
-    }, ()=>{
-      console.log('login success');
-      loading.dismiss();
     });
   }
 

@@ -39,7 +39,6 @@
         "ionic-angular": "3.6.1",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
-        "onesignal-cordova-plugin": "^2.2.0",
         "phonegap-plugin-barcodescanner": "^6.0.8",
         "rxjs": "5.4.0",
         "sw-toolbox": "3.6.0",
@@ -59,8 +58,7 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
-            "cordova-sqlite-storage": {},
-            "onesignal-cordova-plugin": {}
+            "cordova-sqlite-storage": {}
         },
         "platforms": [
             "android",

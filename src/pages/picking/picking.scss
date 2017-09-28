@@ -1,10 +1,16 @@
 page-picking {
     .not-matched {
         color: red;
+        font-size: 12px;
       }
     
     .matched {
         color: #00FF15;
+        font-size: 12px;
+    }
+
+    .smallFont{
+        font-size: 10px;
     }
 }
 

@@ -18,7 +18,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = WelcomePage;
+  //rootPage: any = WelcomePage;
+  rootPage: any = HomePage;
 
   public pages: Array<{title: string, component: any}>;
   public imagestr: string;
@@ -56,8 +57,7 @@ export class MyApp {
     if(this.axServiceProvider.userImage == "" || this.axServiceProvider.userImage == null){
       return "assets/icon/user.png";
     } else {
-      var img = "data:image/jpeg;base64," + this.axServiceProvider.userImage;
-      console.log(img);
+      var img = "data:image/jpeg;base64," + this.axServiceProvider.userImage;      
       return this.sanitizer.bypassSecurityTrustUrl(img);
     }
   }

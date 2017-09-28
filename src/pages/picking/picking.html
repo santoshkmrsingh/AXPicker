@@ -7,17 +7,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-list no-margin no-padding> 
-    <ion-item>
+  <ion-list no-margin no-padding > 
+    <ion-item >
       <ion-label style="width:15%;">Qty</ion-label>
       <ion-label style="width:35%;">Batch</ion-label>
       <ion-label style="width:15%;">Picked</ion-label>
       <ion-label style="width:35%;">Scanned</ion-label>
     </ion-item>
     <ion-item *ngFor="let row of batchList" >
-      <ion-label style="width:15%; text-align: center;">{{row.qty}}</ion-label>
-      <ion-label style="width:35%; text-align: center;">{{row.batchNumber}}</ion-label>
-      <div item-content style="width:15%; text-align: center;">
+      <ion-label style="width:15%; text-align:center;" [ngClass]="dataColor(row)">{{row.qty}}</ion-label>
+      <ion-label style="width:35%; text-align:center;" [ngClass]="dataColor(row)">{{row.batchNumber}}</ion-label>
+      <div item-content style="width:15%; text-align:center;">
         <ion-input auto-tab #listElement [ngClass]="dataColor(row)" type="text" (ionFocus)="scanBarcode(row)" [(ngModel)]="row.qtyScanned"></ion-input>
       </div>
       <div item-content style="width:35%; text-align: center;">
