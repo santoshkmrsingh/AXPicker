@@ -41,7 +41,7 @@ export class HomePage {
       this.axMethods.parmWorkerID = '';
       this.axMethods.userImage ='';  
       this.axMethods.axUser = '';
-      this.axMethods.axWorkerId = '';      
+      this.axMethods.axWorkerId = '';         
   }
 
 }

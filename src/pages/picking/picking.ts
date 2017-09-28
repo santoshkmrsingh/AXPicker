@@ -53,7 +53,8 @@ export class PickingPage {
     matched = true;
 
     for (var i = 0; i < this.batchList.length; i++){      
-      matched = matched && (this.batchList[i].batchScanned == this.batchList[i].batchNumber);      
+      matched = matched && (this.batchList[i].batchScanned == this.batchList[i].batchNumber);    
+      matched = matched && (this.batchList[i].qtyScanned == this.batchList[i].qty);      
       }
 
     this.axService.pickingDone = matched;
@@ -75,7 +76,6 @@ export class PickingPage {
           console.log("Error occured : " + err);
       });
     }
-    //this.elem.nativeElement.next().focus();
   }
 
   dataColor(rowObject){
