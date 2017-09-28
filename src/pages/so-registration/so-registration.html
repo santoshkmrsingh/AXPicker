@@ -11,8 +11,8 @@
 
 
 <ion-content padding>
-        <ion-list [virtualScroll]="soLineList" approxItemHeight="80px">
-            <button ion-item *virtualItem="let item" (click)="itemSelected(item)" [style.color]="item.picked ? '#00CC00' : '000000'">
+        <ion-list *ngFor="let item of soLineList">
+            <button ion-item (click)="itemSelected(item)" [style.color]="item.picked ? '#00CC00' : '000000'">
                 <h3>Line No : {{item.lineNum}}</h3>
                 <h3>Item : {{item.itemId}}</h3>
                 <h3>Name : {{item.itemName}}</h3>

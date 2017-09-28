@@ -39,8 +39,9 @@ export class SoRegistrationPage {
     if ( this.lastItemClicked ){
       this.lastItemClicked.picked = this.axService.pickingDone;          
     }
-    console.log('ionViewDidEnter');
+    console.log('ionViewDidEnter SoRegistrationPage');
     console.log( this.lastItemClicked);
+    console.log( this.soLineList );
   }
 
   itemSelected( item :any ) {
