@@ -23,37 +23,6 @@
             </button>            
           </ion-list>  
 
-<!--
-  <ion-grid [virtualScroll]="soLineList" approxItemHeight="100px" approxHeaderHeight="0px" approxFooterHeight="0px">    
-    <ion-row>
-      <ion-col width-50 *virtualItem="let item;let idx = index">        
-          {{item.title}} {{item.hideWithCssClassDisplayNone}}
-      </ion-col>
-    </ion-row>
-  </ion-grid>
- 
-
-  <ion-grid>
-      <ion-row>
-          <ion-col col-auto>LineNo</ion-col>
-          <ion-col col-auto>Item</ion-col>        
-          <ion-col>Name</ion-col> 
-          <ion-col>Unit</ion-col> 
-          <ion-col>Qty</ion-col>  
-      </ion-row>
-
-      <button ion-item no-margin *ngFor="let row of soLineList" ngDefaultControl no-border no-padding (click)="itemSelected(row)">          
-        <ion-row wrap>
-            <ion-col col-auto>{{row.lineNum}}</ion-col>
-            <ion-col col-auto>{{row.itemId}}</ion-col>
-            <ion-col>{{row.itemName}}</ion-col>  
-            <ion-col>{{row.uom}}</ion-col>  
-            <ion-col>{{row.qty}}</ion-col>  
-        </ion-row>
-      </button>
-    </ion-grid>
-     -->
-  
   <br>
   
   <button ion-button (click)="printDeliveryNote()">Confirm</button>     
