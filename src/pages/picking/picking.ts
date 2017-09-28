@@ -58,7 +58,12 @@ export class PickingPage {
       }
 
     this.axService.pickingDone = matched;
-    this.navCtrl.pop();
+    if (matched){
+      this.navCtrl.pop();
+    }else{
+      this.alert.create( {title : 'Confirm', subTitle : 'Invalid pick transactions found.', buttons : ['Dismiss']}).present();      
+    }
+    
   }
 
   scanBarcode(rowObject){
