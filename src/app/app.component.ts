@@ -18,8 +18,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  //rootPage: any = WelcomePage;
-  rootPage: any = HomePage;
+  rootPage: any = WelcomePage;
+  //rootPage: any = HomePage;
 
   public pages: Array<{title: string, component: any}>;
   public imagestr: string;
