@@ -29,7 +29,7 @@ export class WelcomePage {
   skipMsg: string = "Skip";
   state: string = 'x';
 
-  /*
+  
   constructor(public navCtrl: NavController, private oneSignal: OneSignal) {
     this.oneSignal.startInit('2a111811-21d2-4b12-bf57-7b970a5c19b1', '867971927416');
     
@@ -46,10 +46,6 @@ export class WelcomePage {
     this.oneSignal.endInit();
 
   }
-*/
-
-constructor(public navCtrl: NavController) {
-}
 
   slideChanged() {
     if (this.slides.isEnd())

@@ -52,7 +52,7 @@ export class SettingsPage {
     this.storage.ready().then(()=>{
       this.storage.set("camBarCode", this.camBarCode);
       this.axService.camBarCode = this.camBarCode;
-      this.axService.setURL();
+      console.log("Camera:"+this.axService.camBarCode);      
     });
   }
     
