@@ -69,5 +69,9 @@ export class WelcomePage {
   animationDone() {
     //this.state = 'x';
   }
+
+  skip() {
+    this.navCtrl.setRoot(HomePage);
+  }
   
 }
