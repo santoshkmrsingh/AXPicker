@@ -1,12 +1,12 @@
 page-picking {
-
+    .not-matched {
+        color: red;
+      }
+    
+    .matched {
+        color: #00FF15;
+    }
 }
 
-.not-matched {
-    color: red;
-  }
 
-.matched {
-    color: #00FF15;
-}
 

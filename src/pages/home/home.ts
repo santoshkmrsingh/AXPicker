@@ -12,10 +12,16 @@ export class HomePage {
   password : string;
 
   public loginClick(){
+    if ( this.userName == '' || this.password == '' || this.userName == undefined || this.password == undefined){
+      this.alert.create( {title : 'Login', subTitle : 'Username or password is missing.', buttons : ['Dismiss']}).present();
+      return;
+    }
+
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     loading.present();
+
     this.axMethods.auth( this.userName, this.password).subscribe((response) => {
       loading.dismiss();
       if ( response.Authenticated )   {
@@ -32,6 +38,9 @@ export class HomePage {
       console.log('ERROR'+error);
       loading.dismiss();
       this.alert.create( {title : 'Error', subTitle : 'Please check network connection.', buttons : ['Dismiss']}).present();
+    }, ()=>{
+      console.log('login success');
+      loading.dismiss();
     });
   }
 
