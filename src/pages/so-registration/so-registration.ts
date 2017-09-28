@@ -16,6 +16,7 @@ export class SoRegistrationPage {
   constructor(public navCtrl: NavController, public navParams: NavParams
       ,public axService:AxServiceProvider, public loadingCtrl: LoadingController, public alert:AlertController) {
     this.saleId = navParams.get('saleId');
+    this.soLineList = [];
   }
 
   ionViewDidLoad() {

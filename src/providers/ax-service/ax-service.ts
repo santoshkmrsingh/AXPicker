@@ -38,18 +38,15 @@ export class AxServiceProvider {
     this.storage.ready().then(() => {
       this.storage.get("whmsserver").then((data) => {
         this.server = data;
-        this.setURL();   
-        console.log(data);     
+        this.setURL();            
       });
       this.storage.get("whmsport").then((data) => {
         this.port = data;
-        this.setURL();
-        console.log(data);  
+        this.setURL(); 
       });
       this.storage.get("camBarCode").then((data) => {
         this.camBarCode = data;
         this.setURL();
-        console.log(data);  
       });
     });
     
@@ -90,8 +87,6 @@ export class AxServiceProvider {
 
   getPickingDetails(saleId:string, lineNum:number): Observable<any>{   
     let body = {salesId: saleId, lineNum: lineNum, DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser}};
-    console.log('calling getPickingDetails')
-    console.log(body);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.soPickingDetailsURL,JSON.stringify(body), options)
@@ -168,7 +163,6 @@ export class AxServiceProvider {
   }
 
   private extractData(res: Response) { 
-    //console.log( res.json() );
     return res.json() || { };
   }
     
