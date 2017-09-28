@@ -37,7 +37,11 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public axMethods: AxServiceProvider, public alert:AlertController,
     public loadingCtrl: LoadingController) {
-
+      //the paramteres have to be intilized so that in case of log off the saved values are reset
+      this.axMethods.parmWorkerID = '';
+      this.axMethods.userImage ='';  
+      this.axMethods.axUser = '';
+      this.axMethods.axWorkerId = '';      
   }
 
 }

@@ -23,7 +23,7 @@ export class SettingsPage {
         this.port = val;
       })
       this.storage.get('camBarCode').then((val) => {
-        this.port = val;
+        this.camBarCode = val;
       })
     })
   }
@@ -36,6 +36,7 @@ export class SettingsPage {
     this.storage.ready().then(() => {
       this.storage.set("whmsserver",this.server);
       this.axService.server = this.server;
+      this.axService.setURL();
     });    
   }
 
@@ -43,6 +44,7 @@ export class SettingsPage {
     this.storage.ready().then(() => {
       this.storage.set("whmsport",this.port);
       this.axService.port = this.port;
+      this.axService.setURL();
     });    
   }
 
@@ -50,6 +52,7 @@ export class SettingsPage {
     this.storage.ready().then(()=>{
       this.storage.set("camBarCode", this.camBarCode);
       this.axService.camBarCode = this.camBarCode;
+      this.axService.setURL();
     });
   }
     

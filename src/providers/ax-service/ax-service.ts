@@ -35,7 +35,6 @@ export class AxServiceProvider {
   }
 
   setServerPort(){ 
-    /*   
     this.storage.ready().then(() => {
       this.storage.get("whmsserver").then((data) => {
         this.server = data;
@@ -47,9 +46,15 @@ export class AxServiceProvider {
         this.setURL();
         console.log(data);  
       });
-    });*/
-    this.server = "192.168.0.182";
-    this.port = "9090";
+      this.storage.get("camBarCode").then((data) => {
+        this.camBarCode = data;
+        this.setURL();
+        console.log(data);  
+      });
+    });
+    
+    //this.server = "192.168.0.182";
+    //this.port = "9090";
     this.setURL();
   }
 
