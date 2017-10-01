@@ -11,6 +11,8 @@ export class AxServiceProvider {
   public server: any;
   public port: any;
   public camBarCode : Boolean;
+  public trackLocation : boolean;
+
   public url;
   public user;
   public axUser;
@@ -55,6 +57,9 @@ export class AxServiceProvider {
         this.camBarCode = data;
         this.setURL();
       });
+      this.storage.get("trackLocation").then( (data)=>{
+        this.trackLocation = data;
+      })
     });
 
     this.setURL();

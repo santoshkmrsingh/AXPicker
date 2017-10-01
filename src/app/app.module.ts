@@ -22,6 +22,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OneSignal } from '@ionic-native/onesignal';
+import { AutoTabDirective } from '../directives/auto-tab/auto-tab';
+import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { OneSignal } from '@ionic-native/onesignal';
     StartPage,
     SoRegistrationPage,
     DataAreaPage,
-    WelcomePage
+    WelcomePage,
+    AutoTabDirective
   ],
 
   imports: [
@@ -67,7 +70,8 @@ import { OneSignal } from '@ionic-native/onesignal';
     {provide: ErrorHandler, useClass: IonicErrorHandler},    
     AxServiceProvider,
     BarcodeScanner,
-    OneSignal 
+    OneSignal,
+    BackgroundGeolocation
   ]
   
 })

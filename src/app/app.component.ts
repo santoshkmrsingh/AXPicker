@@ -8,6 +8,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { AxServiceProvider } from '../providers/ax-service/ax-service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class MyApp {
   public imagestr: string;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
-      public axServiceProvider: AxServiceProvider, private sanitizer: DomSanitizer) {
+      public axServiceProvider: AxServiceProvider, private sanitizer: DomSanitizer,
+      private backgroundGeolocation: BackgroundGeolocation) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -33,6 +35,27 @@ export class MyApp {
       { title: 'Home', component: HomePage },      
       { title: 'Settings', component: SettingsPage }
     ];
+
+    const config: BackgroundGeolocationConfig = {
+      desiredAccuracy: 10,
+      stationaryRadius: 20,
+      distanceFilter: 30,
+      debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+      stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+    };
+
+  this.backgroundGeolocation.configure(config).subscribe((location: BackgroundGeolocationResponse) => {
+    console.log('Location');
+    // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+    // and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
+    // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+    this.backgroundGeolocation.finish().then((value:any)=>{console.log(value);}
+    , (reason:any)=>{console.log(reason);
+    }); // FOR IOS ONLY
+  }, ( error:any ) => {
+    console.log( 'error');
+  });
+  
   }
 
   initializeApp() {

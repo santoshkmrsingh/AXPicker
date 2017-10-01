@@ -15,8 +15,6 @@ import { AxServiceProvider } from '../../providers/ax-service/ax-service';
   templateUrl: 'picking.html',
 })
 
-@Directive({ selector: '[listElement]' })
-
 export class PickingPage {
   public saleId;
   public lineNum;
