@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 import { DataAreaPage } from '../data-area/data-area';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 
 @Component({
   selector: 'page-home',
@@ -28,7 +29,12 @@ export class HomePage {
         this.axMethods.parmWorkerID = response.Worker.PersonnelNumber;
         this.axMethods.userImage = response.Worker.ImageStr;  
         this.axMethods.axUser =  response.Worker.AxUser;
-        this.axMethods.axWorkerId = response.Worker.PersonnelNumber;      
+        this.axMethods.axWorkerId = response.Worker.PersonnelNumber;   
+        //start tracking if tracking is enabled   
+        if ( this.axMethods.trackLocation == true ) {
+          this.backgroundGeolocation.start(); 
+        }
+        
         this.navCtrl.push(DataAreaPage);        
       }
       else {
@@ -42,7 +48,7 @@ export class HomePage {
   }
 
   constructor(public navCtrl: NavController, public axMethods: AxServiceProvider, public alert:AlertController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, private backgroundGeolocation: BackgroundGeolocation) {
       //the paramteres have to be intilized so that in case of log off the saved values are reset
       this.axMethods.parmWorkerID = '';
       this.axMethods.userImage ='';  
