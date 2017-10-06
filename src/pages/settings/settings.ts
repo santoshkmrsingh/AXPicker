@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AxServiceProvider } from '../../providers/ax-service/ax-service';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { LabelSettingsPage } from '../label-settings/label-settings';
 
 @Component({
   selector: 'page-settings',
@@ -74,5 +75,9 @@ export class SettingsPage {
       this.backgroundGeolocation.stop();          
       }
     });    
+  }
+
+  showLabelsetting(){
+    this.navCtrl.push(LabelSettingsPage);
   }
 }

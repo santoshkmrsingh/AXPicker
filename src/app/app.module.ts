@@ -23,7 +23,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OneSignal } from '@ionic-native/onesignal';
 import { AutoTabDirective } from '../directives/auto-tab/auto-tab';
-import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { LabelSettingsPage } from '../pages/label-settings/label-settings';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocati
     SoRegistrationPage,
     DataAreaPage,
     WelcomePage,
-    AutoTabDirective
+    AutoTabDirective,
+    LabelSettingsPage
   ],
 
   imports: [
@@ -50,6 +52,7 @@ import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocati
   ],
 
   bootstrap: [IonicApp],
+  
   entryComponents: [
     MyApp,
     HomePage,
@@ -61,7 +64,8 @@ import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocati
     StartPage,
     SoRegistrationPage,
     DataAreaPage,
-    WelcomePage
+    WelcomePage,
+    LabelSettingsPage
   ],
 
   providers: [
