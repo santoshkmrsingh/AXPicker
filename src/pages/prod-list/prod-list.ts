@@ -12,6 +12,7 @@ export class ProdListPage {
 
   public prodOrderList;
   public filterList;
+  public serachInput;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public axService:AxServiceProvider,
   public alert:AlertController, public loadingCtrl: LoadingController) {
@@ -58,7 +59,8 @@ export class ProdListPage {
   }
 
   doRefresh(refresher){
-    this.axService.getProdList( this.axService.parmWorkerID ).subscribe((response)=>{
+    this.axService.getProdList( this.axService.parmWorkerID ).subscribe((response)=> {
+      this.serachInput = '';
       this.prodOrderList = response; 
       this.filterList = response;
       refresher.complete();

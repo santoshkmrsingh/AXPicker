@@ -14,7 +14,8 @@
     [showCancelButton]="true"
     (ionInput)="onSearchInput($event)"
     (ionCancel)="onSearchCancel($event)"
-    (ionClear)="onSearchCancel($event)">
+    (ionClear)="onSearchCancel($event)"
+    [(ngModel)]="serachInput">
 </ion-searchbar>
   
 </ion-header>

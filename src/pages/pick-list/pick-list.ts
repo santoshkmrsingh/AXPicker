@@ -18,6 +18,7 @@ import { SoRegistrationPage } from '../so-registration/so-registration';
 export class PickListPage {
   public salesOrderList;
   public filterList;
+  public serachInput;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public axService:AxServiceProvider,
     public alert: AlertController, public loadingCtrl: LoadingController) {
@@ -72,6 +73,7 @@ export class PickListPage {
 
   doRefresh(refresher){
     this.axService.getSalesOrderList( this.axService.parmWorkerID ).subscribe((response)=>{
+      this.serachInput = '';
       this.salesOrderList = response; 
       this.filterList = response;  
       refresher.complete();  
