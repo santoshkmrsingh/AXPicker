@@ -23,6 +23,20 @@
   <p>
     Please choose the buttons in the same sequence.
   </p>
+  <p>
+    <ion-label fixed>Asset Label</ion-label>
+    <ion-textarea elastic [(ngModel)]="strZPL"></ion-textarea>
+  </p>
+  <p>
+      <ion-label fixed>Camera Image</ion-label>
+  </p>
   <button ion-button (click)="findPrinter()">Find</button>
   <button ion-button (click)="printZPL()">Print</button>
+
+    <ion-card>
+      <ion-card-content>  
+        <button (click)="cameraTest()">Select Picture</button>
+        <img [src]="DomSanitizer.bypassSecurityTrustUrl(imageURL)" *ngIf="imageURL" />
+      </ion-card-content>
+    </ion-card>
 </ion-content>

@@ -25,6 +25,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { AutoTabDirective } from '../directives/auto-tab/auto-tab';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { LabelSettingsPage } from '../pages/label-settings/label-settings';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { LabelSettingsPage } from '../pages/label-settings/label-settings';
     AxServiceProvider,
     BarcodeScanner,
     OneSignal,
-    BackgroundGeolocation
+    BackgroundGeolocation,
+    Camera
   ]
   
 })
