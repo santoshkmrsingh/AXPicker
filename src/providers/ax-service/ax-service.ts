@@ -43,6 +43,17 @@ export class AxServiceProvider {
     this.setServerPort(); //required for production build     
   }
 
+
+  updateUser(pictureStr):Observable<any>{
+    let body = {DataArea: {DataAreaId: this.company}, Worker: {AxUser: this.axUser, PersonnelNumber: this.axWorkerId, ImageStr:pictureStr}};
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.url + 'updateUser', JSON.stringify(body), options)
+    .map(this.extractData)
+    .catch(this.handleError);  
+  }
+
   setServerPort(){ 
     this.storage.ready().then(() => {
       this.storage.get("whmsserver").then((data) => {

@@ -14,28 +14,19 @@
 
 
 <ion-content padding>
-  <h2>Zebra Printer Testing</h2>
-  <p>
-    There are two buttons on this project
-    Find: used to find and connect to a zebra printer
-    Print: used to print a test label on the printer
-  </p>
-  <p>
-    Please choose the buttons in the same sequence.
-  </p>
-  <p>
-    <ion-label fixed>Asset Label</ion-label>
-    <ion-textarea elastic [(ngModel)]="strZPL"></ion-textarea>
-  </p>
-  <p>
-      <ion-label fixed>Camera Image</ion-label>
-  </p>
-  <button ion-button (click)="findPrinter()">Find</button>
-  <button ion-button (click)="printZPL()">Print</button>
+  <ion-card>
+      <ion-card-content>
+          <ion-label fixed>Asset Label</ion-label>
+          <textarea #myInput id="myInput" rows="10" maxLength="500" [(ngModel)]="strZPL"></textarea>
+          <button ion-button (click)="findPrinter()">Find</button>
+          <button ion-button (click)="printZPL()">Print</button>      
+      </ion-card-content>
+</ion-card>
 
     <ion-card>
       <ion-card-content>  
-        <button (click)="cameraTest()">Select Picture</button>
+        <button ion-button (click)="cameraTest()">Select Picture</button>
+        <button ion-button (click)="updateWorker()">Save Picture</button>
         <img [src]="DomSanitizer.bypassSecurityTrustUrl(imageURL)" *ngIf="imageURL" />
       </ion-card-content>
     </ion-card>
